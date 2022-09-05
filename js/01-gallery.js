@@ -33,6 +33,16 @@ function onGalleryContainerClick(evt) {
   if (!evt.target.dataset.source) {
     return;
   }
-
   console.log(evt.target.dataset.source);
+
+  const instance = basicLightbox.create(`
+    <img src=${evt.target.dataset.source} width="800" height="600">
+`);
+  instance.show();
+
+  galleryContainer.addEventListener("keydown", (e) => {
+    if (e.code === "Escape") {
+      instance.close();
+    }
+  });
 }
