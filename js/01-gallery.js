@@ -5,7 +5,9 @@ import { galleryItems } from "./gallery-items.js";
 const galleryContainer = document.querySelector(".gallery");
 const galleryMarkup = createGalleryMarkUp(galleryItems);
 
-galleryContainer.insertAdjacentElement("beforeend", galleryMarkup);
+galleryContainer.insertAdjacentHTML("beforeend", galleryMarkup);
+
+galleryContainer.addEventListener("click", onGalleryContainerClick);
 
 function createGalleryMarkUp(galleryItems) {
   return galleryItems
@@ -24,4 +26,13 @@ function createGalleryMarkUp(galleryItems) {
 `;
     })
     .join("");
+}
+
+function onGalleryContainerClick(evt) {
+  evt.preventDefault();
+  if (!evt.target.dataset.source) {
+    return;
+  }
+
+  console.log(evt.target.dataset.source);
 }
